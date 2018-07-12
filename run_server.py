@@ -1,10 +1,11 @@
 import flask
 from telebot import types
 from config import *
-from LMBot import bot
+from bot_handlers import bot
 import os
 
 server = flask.Flask(__name__)
+
 
 @server.route('/' + TOKEN, methods=['POST'])
 def get_message():
