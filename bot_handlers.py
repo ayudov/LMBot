@@ -1,6 +1,7 @@
 ﻿import telebot
 from telebot import types
 import gspread
+import config
 
 import re
 
@@ -15,17 +16,10 @@ client = gspread.authorize(creds)
 sheet = client.open('Mykola test.xlsx').sheet1
 
 
-
-#md = sheet.get_all_records()
-
-#sheet.append_row(['111', '222'])
 #----------
 
 
 #Настройка бота
-TOKEN = '611203851:AAGKRhdLhseIK4Xhu-Ftyp_VUNXXclfudH0'
-APP_NAME = 'LMBot'
-
 
 bot = telebot.TeleBot(TOKEN)
 print(bot.get_me())
