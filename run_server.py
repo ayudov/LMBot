@@ -1,11 +1,12 @@
 import flask
 from telebot import types
-from config import *
-from bot_handlers import bot
+from LMBot import bot
 import os
 
 server = flask.Flask(__name__)
 
+TOKEN = '611203851:AAGKRhdLhseIK4Xhu-Ftyp_VUNXXclfudH0'
+APP_NAME = 'leroymerlintgbot'
 
 @server.route('/' + TOKEN, methods=['POST'])
 def get_message():
