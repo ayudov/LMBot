@@ -21,7 +21,7 @@ sheet = client.open('Mykola test.xlsx').sheet1
 
 #Настройка бота
 
-bot = telebot.TeleBot(TOKEN)
+bot = telebot.TeleBot(config.TOKEN)
 print(bot.get_me())
 
 #----------
