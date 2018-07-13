@@ -38,7 +38,7 @@ def repeat_all_messages(message):
 	send = False 
 	
 	#if re.search('[a-zA-ZА-Яа-я]', message.text):
-	if re.search('[NULL-/:-я]', message.text):
+	if re.search('\D', message.text):
 		bot.send_message(message.chat.id, "Пожалуйста, введите код, который состоит только из цифр")
 	else:
 		for x  in result:
