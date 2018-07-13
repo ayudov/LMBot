@@ -37,7 +37,8 @@ def repeat_all_messages(message):
 	result = sheet.get_all_records()
 	send = False 
 	
-	if re.search('[a-zA-ZА-Яа-я]', message.text):
+	#if re.search('[a-zA-ZА-Яа-я]', message.text):
+	if re.search('[NULL-/:-я]', message.text):
 		bot.send_message(message.chat.id, "Пожалуйста, введите код, который состоит только из цифр")
 	else:
 		for x  in result:
