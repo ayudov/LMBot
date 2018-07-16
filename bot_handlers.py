@@ -47,17 +47,17 @@ def answer_message(message):
 				send = True
 				found = True
 				if x.get('provider') == 'LEROY_MERLIN':
-					send_text = "Статус: " + str(x.get('status')) + "\nПровайдер: " + str(x.get('provider')  + "\nВнешний ключ: " + x.get('external_id') + "\nПолучите доставку в одном из магазинов")
+					send_text = "Статус: " + str(x.get('status')) + "\nПровайдер: " + str(x.get('provider')_  + "\nВнешний ключ: " + str(x.get('external_id')) + "\nПолучите доставку в одном из магазинов"
 					#send_message(message.chat.id, send_text) 
-					#bot.send_message(message.chat.id, "Статус: " + str(x.get('status') + "\nПровайдер: " + str(x.get('provider'))  + "\nВнешний ключ: " + str(x.get('external_id')) + "\nПолучите доставку в одном из магазинов"))
+					#bot.send_message(message.chat.id, "Статус: " + str(x.get('status')) + "\nПровайдер: " + str(x.get('provider'))  + "\nВнешний ключ: " + str(x.get('external_id')) + "\nПолучите доставку в одном из магазинов")
 
 				elif x.get('provider') == 'AVITEK_INVEST':
-					send_text = "Статус: " + str(x.get('status')) + "\nПровайдер: " + str(x.get('provider')  + "\nВнешний ключ: " + x.get('external_id') + "\nОжидайте доставку домой")
+					send_text = "Статус: " + str(x.get('status')) + "\nПровайдер: " + str(x.get('provider'))  + "\nВнешний ключ: " + str(x.get('external_id')) + "\nОжидайте доставку домой"
 
 					#bot.send_message(message.chat.id, "Статус: " + str(x.get('status') + "\nПровайдер: " + str(x.get('provider'))  + "\nВнешний ключ: " + str(x.get('external_id')) + "\nОжидайте доставку домой"))
 				elif x.get('provider') == 'NOVA_POSHTA':
 					if x.get('status_2') == 1:
-						#send_text = "Статус: " + str(x.get('status') + "\nПровайдер: " + str(x.get('provider'))  + "\nВнешний ключ: " + str(x.get('external_id')) + "\nСтатус Новой Почты: " + "Нова пошта очікує надходження від відправника"
+						send_text = "Статус: " + str(x.get('status')) + "\nПровайдер: " + str(x.get('provider'))  + "\nВнешний ключ: " + str(x.get('external_id')) + "\nСтатус Новой Почты: " + "Нова пошта очікує надходження від відправника"
 					elif x.get('status_2') == 2:
 						bot.send_message(message.chat.id, "Статус: " + str(x.get('status') + "\nПровайдер: " + str(x.get('provider'))  + "\nВнешний ключ: " + str(x.get('external_id')) + "\nСтатус Новой Почты: " + "Видалено"))
 					elif x.get('status_2') == 3:
