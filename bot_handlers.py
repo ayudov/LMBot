@@ -48,7 +48,7 @@ def answer_message(message):
 				send = True
 				found = True
 				if x.get('provider') == 'LEROY_MERLIN':
-					send_text = send_text + "\nСтатус: " + str(x.get('status')) + "\nПровайдер: " + str(x.get('provider'))  + "\nВнешний ключ: " + str(x.get('external_id')) + "\nПолучите доставку в одном из магазинов"
+					send_text = send_text + "\nСтатус: " + str(x.get('status')) + "\nПровайдер: " + str(x.get('provider'))  + "\nВнешний ключ: " + str(x.get('external_id')) + "\nПолучите доставку в одном из магазинов\n"
 
 
 				elif x.get('provider') == 'AVITEK_INVEST':
@@ -57,7 +57,7 @@ def answer_message(message):
 
 				elif x.get('provider') == 'NOVA_POSHTA':
 					if x.get('status_2') == 1:
-						send_text = "Статус: " + str(x.get('status')) + "\nПровайдер: " + str(x.get('provider'))  + "\nВнешний ключ: " + str(x.get('external_id')) + "\nСтатус Новой Почты: " + "Нова пошта очікує надходження від відправника\n"
+						send_text = "Статус: " + str(x.get('status')) + "\nПровайдер: " + str(x.get('provider'))  + "\nВнешний ключ: " + str(x.get('external_id')) + "\nСтатус Новой Почты: " + "Нова пошта очікує надходження від відправника"
 					elif x.get('status_2') == 2:
 						send_text = "Статус: " + str(x.get('status')) + "\nПровайдер: " + str(x.get('provider'))  + "\nВнешний ключ: " + str(x.get('external_id')) + "\nСтатус Новой Почты: " + "Видалено"
 					elif x.get('status_2') == 3:
