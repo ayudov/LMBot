@@ -58,7 +58,7 @@ def answer_message(message):
 
 
 				elif x.get('provider') == 'NOVA_POSHTA':
-					turn ++
+					turn = turn + 1
 					if hat_written == False:
 						send_array.append("\nСтатус: " + str(x.get('status')) + "\nПровайдер: " + str(x.get('provider')))
 						hat_written = True
@@ -69,7 +69,9 @@ def answer_message(message):
 
 					for x in send_array:
 						
-						send_text = send_text + str(x)
+						send_text = "\n" + send_text + str(x)
+
+
 					'''if x.get('status_2') == 1:
 						send_text = send_text + "\nСтатус: " + str(x.get('status')) + "\nПровайдер: " + str(x.get('provider'))  + "\nВнешний ключ: " + str(x.get('external_id')) + "\nСтатус Новой Почты: " + "Нова пошта очікує надходження від відправника\n"
 					elif x.get('status_2') == 2:
