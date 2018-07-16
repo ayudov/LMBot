@@ -68,11 +68,6 @@ def answer_message(message):
 					elif x.get('status_2') == 2:
 						send_array.append("\nВнешний ключ " + str(turn) + ": " + str(x.get('external_id')) + "\nСтатус Новой Почты " + str(turn) + ": " + "Видалено\n")
 
-					for x in send_array:
-						send_text = "\n" + send_text + str(x)
-
-					print(send_array)
-
 
 					'''if x.get('status_2') == 1:
 						send_text = send_text + "\nСтатус: " + str(x.get('status')) + "\nПровайдер: " + str(x.get('provider'))  + "\nВнешний ключ: " + str(x.get('external_id')) + "\nСтатус Новой Почты: " + "Нова пошта очікує надходження від відправника\n"
@@ -116,13 +111,15 @@ def answer_message(message):
 
 
 
-	send_message(message.chat.id, send_text)
+	send_message(message.chat.id, send_text, send_array)
 
 			
 
 
 
-def send_message(id, text): 
+def send_message(id, text, array): 
+	for x in array:
+		text = "\n" + text + str(x)
 	bot.send_message(id, text)
 
 
