@@ -32,10 +32,11 @@ def send_welcome(message):
 
 
 @bot.message_handler(content_types=["text"]) # Любой текст
-def repeat_all_messages(message):
+def answer_message(message):
 
 	result = sheet.get_all_records()
 	send = False 
+	found = False
 	
 	#if re.search('[a-zA-ZА-Яа-я]', message.text):
 	if re.search('\D', message.text):
@@ -44,8 +45,10 @@ def repeat_all_messages(message):
 		for x  in result:
 			if x.get('pyxis_order_uid') == int(message.text):
 				send = True
+				found = True
 				if x.get('provider') == 'LEROY_MERLIN':
-					bot.send_message(message.chat.id, "Статус: " + str(x.get('status') + "\nПровайдер: " + str(x.get('provider'))  + "\nВнешний ключ: " + str(x.get('external_id')) + "\nПолучите доставку в одном из магазинов"))
+					send_text = "Статус: " + str(x.get('status') + "\nПровайдер: " + str(x.get('provider'))  + "\nВнешний ключ: " + str(x.get('external_id')) + "\nПолучите доставку в одном из магазинов"
+					#bot.send_message(message.chat.id, "Статус: " + str(x.get('status') + "\nПровайдер: " + str(x.get('provider'))  + "\nВнешний ключ: " + str(x.get('external_id')) + "\nПолучите доставку в одном из магазинов"))
 				elif x.get('provider') == 'AVITEK_INVEST':
 					bot.send_message(message.chat.id, "Статус: " + str(x.get('status') + "\nПровайдер: " + str(x.get('provider'))  + "\nВнешний ключ: " + str(x.get('external_id')) + "\nОжидайте доставку домой"))
 				elif x.get('provider') == 'NOVA_POSHTA':
@@ -93,7 +96,8 @@ def repeat_all_messages(message):
 
 
 
-
+def send_message(id, text): 
+	bot.send_message(id, text)
 
 
 
