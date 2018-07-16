@@ -37,6 +37,7 @@ def answer_message(message):
 	result = sheet.get_all_records()
 	send = False 
 	found = False
+	send_text = ""
 	
 	#if re.search('[a-zA-ZА-Яа-я]', message.text):
 	if re.search('\D', message.text):
