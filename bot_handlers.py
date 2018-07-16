@@ -68,7 +68,6 @@ def answer_message(message):
 						send_array.append("\nВнешний ключ " + str(turn) + ": " + str(x.get('external_id')) + "\nСтатус Новой Почты " + str(turn) + ": " + "Видалено\n"
 
 					for x in send_array:
-						
 						send_text = "\n" + send_text + str(x)
 
 
