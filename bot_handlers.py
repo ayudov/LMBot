@@ -71,6 +71,8 @@ def answer_message(message):
 					for x in send_array:
 						send_text = "\n" + send_text + str(x)
 
+					print(send_array)
+
 
 					'''if x.get('status_2') == 1:
 						send_text = send_text + "\nСтатус: " + str(x.get('status')) + "\nПровайдер: " + str(x.get('provider'))  + "\nВнешний ключ: " + str(x.get('external_id')) + "\nСтатус Новой Почты: " + "Нова пошта очікує надходження від відправника\n"
