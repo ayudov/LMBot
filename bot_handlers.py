@@ -35,8 +35,11 @@ def send_welcome(message):
 def answer_message(message):
 
 	result = sheet.get_all_records()
-	send = False 
+	send = False
+	hat_written = False
+	send_array = []
 	send_text = ""
+	turn = 0
 	
 	#if re.search('[a-zA-ZА-Яа-я]', message.text):
 	if re.search('\D', message.text):
@@ -46,7 +49,8 @@ def answer_message(message):
 			if x.get('pyxis_order_uid') == int(message.text):
 				send = True
 				if x.get('provider') == 'LEROY_MERLIN':
-					send_text = send_text + "\nСтатус: " + str(x.get('status')) + "\nПровайдер: " + str(x.get('provider'))  + "\nВнешний ключ: " + str(x.get('external_id')) + "\nПолучите доставку в одном из магазинов\n"
+					send_text2 = "\nСтатус: " + str(x.get('status')) + "\nПровайдер: " + str(x.get('provider'))  + "\nВнешний ключ: " + str(x.get('external_id')) + "\nПолучите доставку в одном из магазинов\n"
+						if 
 
 
 				elif x.get('provider') == 'AVITEK_INVEST':
@@ -54,7 +58,19 @@ def answer_message(message):
 
 
 				elif x.get('provider') == 'NOVA_POSHTA':
+					turn ++
+					if hat_written == False:
+						send_array.append("\nСтатус: " + str(x.get('status')) + "\nПровайдер: " + str(x.get('provider')))
+						hat_written = True
 					if x.get('status_2') == 1:
+						send_array.append("\nВнешний ключ " + str(turn) + ": " + str(x.get('external_id')) + "\nСтатус Новой Почты " + str(turn) + ": " + "Нова пошта очікує надходження від відправника\n")
+					elif x.get('status_2') == 2:
+						send_array.append("\nВнешний ключ " + str(turn) + ": " + str(x.get('external_id')) + "\nСтатус Новой Почты " + str(turn) + ": " + "Видалено\n"
+
+					for x in send_array:
+						
+						send_text = send_text + str(x)
+					'''if x.get('status_2') == 1:
 						send_text = send_text + "\nСтатус: " + str(x.get('status')) + "\nПровайдер: " + str(x.get('provider'))  + "\nВнешний ключ: " + str(x.get('external_id')) + "\nСтатус Новой Почты: " + "Нова пошта очікує надходження від відправника\n"
 					elif x.get('status_2') == 2:
 						send_text = send_text + "\nСтатус: " + str(x.get('status')) + "\nПровайдер: " + str(x.get('provider'))  + "\nВнешний ключ: " + str(x.get('external_id')) + "\nСтатус Новой Почты: " + "Видалено\n"
@@ -89,7 +105,7 @@ def answer_message(message):
 					elif x.get('status_2') == 107:
 						send_text = send_text + "\nСтатус: " + str(x.get('status')) + "\nПровайдер: " + str(x.get('provider'))  + "\nВнешний ключ: " + str(x.get('external_id')) + "\nСтатус Новой Почты: " + "Нараховується плата за зберігання\n"
 					else:
-						send_text = send_text + "\nСтатус: " + str(x.get('status')) + "\nПровайдер: " + str(x.get('provider'))  + "\nВнешний ключ: " + str(x.get('external_id')) + "\nСтатус Новой Почты: " + "-\n"
+						send_text = send_text + "\nСтатус: " + str(x.get('status')) + "\nПровайдер: " + str(x.get('provider'))  + "\nВнешний ключ: " + str(x.get('external_id')) + "\nСтатус Новой Почты: " + "-\n"'''
 					
 		if send == False:
 			send_text = "К сожалению, такого кода товара нет"
