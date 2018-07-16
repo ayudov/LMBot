@@ -49,7 +49,7 @@ def answer_message(message):
 			if x.get('pyxis_order_uid') == int(message.text):
 				send = True
 				if x.get('provider') == 'LEROY_MERLIN':
-					send_text2 = "\nСтатус: " + str(x.get('status')) + "\nПровайдер: " + str(x.get('provider'))  + "\nВнешний ключ: " + str(x.get('external_id')) + "\nПолучите доставку в одном из магазинов\n"
+					#send_text2 = "\nСтатус: " + str(x.get('status')) + "\nПровайдер: " + str(x.get('provider'))  + "\nВнешний ключ: " + str(x.get('external_id')) + "\nПолучите доставку в одном из магазинов\n"
 				
 
 
