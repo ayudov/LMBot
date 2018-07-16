@@ -43,13 +43,13 @@ def answer_message(message):
 	
 	#if re.search('[a-zA-ZА-Яа-я]', message.text):
 	if re.search('\D', message.text):
-		bot.send_message(message.chat.id, "Пожалуйста, введите код, который состоит только из цифр")
+		bot.send_message(message.chat.id, "Пожалуйста, номер заказа, который состоит только из цифр")
 	else:
 		for x  in result:
 			if x.get('pyxis_order_uid') == int(message.text):
 				send = True
 				if x.get('provider') == 'LEROY_MERLIN':
-					#send_text2 = "\nСтатус: " + str(x.get('status')) + "\nПровайдер: " + str(x.get('provider'))  + "\nВнешний ключ: " + str(x.get('external_id')) + "\nПолучите доставку в одном из магазинов\n"
+					send_text = "\nСтатус: " + str(x.get('status')) + "\nПровайдер: " + str(x.get('provider'))  + "\nВнешний ключ: " + str(x.get('external_id')) + "\nПолучите доставку в одном из магазинов\n"
 				
 
 
