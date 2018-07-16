@@ -47,7 +47,7 @@ def answer_message(message):
 				send = True
 				found = True
 				if x.get('provider') == 'LEROY_MERLIN':
-					send_text = "Статус: " + str(x.get('status') + "\nПровайдер: " + "str(x.get('provider'))"  + "\nВнешний ключ: " + "str(x.get('external_id'))" + "\nПолучите доставку в одном из магазинов"
+					send_text = "Статус: " + str(x.get('status')) + "\nПровайдер: " + "str(x.get('provider'))"  + "\nВнешний ключ: " + "str(x.get('external_id'))" + "\nПолучите доставку в одном из магазинов"
 					send_message(message.chat.id, send_text) 
 					#bot.send_message(message.chat.id, "Статус: " + str(x.get('status') + "\nПровайдер: " + str(x.get('provider'))  + "\nВнешний ключ: " + str(x.get('external_id')) + "\nПолучите доставку в одном из магазинов"))
 				elif x.get('provider') == 'AVITEK_INVEST':
