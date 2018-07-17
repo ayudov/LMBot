@@ -124,12 +124,8 @@ def send_message(id, text, array):
      			seen.append(item)
      			result.append(item)
 
-	text = text + result[0]
-
-	turn = 0
-
 	for x in result:
-		text = text + str(turn ) + ")" + str(x)
+		text = text + str(x) + "\n"
 	
 		
 	bot.send_message(id, text)
