@@ -127,7 +127,7 @@ def send_message(id, text, array):
 	turn = 0
 	for x in result:
 		turn = turn + 1	
-		text = str(turn) + ")\n" + text + str(x)
+		text = text + str(turn) + ")\n" + str(x)
 		
 	bot.send_message(id, text)
 
