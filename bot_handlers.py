@@ -28,7 +28,7 @@ print(bot.get_me())
 @bot.message_handler(commands=['start'])  # Выполняется, когда пользователь нажимает на start
 def send_welcome(message):
 
-	bot.send_message(message.chat.id, 'Вас приветствует бот Leroy Merlin\nПожалуйста, введите код товара')
+	bot.send_message(message.chat.id, 'Вас приветствует бот Leroy Merlin\nПожалуйста, введите номер заказа')
 
 
 @bot.message_handler(content_types=["text"]) # Любой текст
@@ -67,7 +67,7 @@ def answer_message(message):
 					elif x.get('status_2') == 2:
 						send_array.append("\nВнешний ключ: " + str(x.get('external_id')) + "\nСтатус Новой Почты: " + "Видалено\n")
 					elif x.get('status_2') == 3:
-						send_array.append(\nВнешний ключ: " + str(x.get('external_id')) + "\nСтатус Новой Почты: " + "Номер не знайдено\n")
+						send_array.append("\nВнешний ключ: " + str(x.get('external_id')) + "\nСтатус Новой Почты: " + "Номер не знайдено\n")
 					elif x.get('status_2') == 4:
 						send_array.append("\nВнешний ключ: " + str(x.get('external_id')) + "\nСтатус Новой Почты: " + "Відправлення у місті ХХXХ. (Статус для межобластных отправлений)\n")
 					elif x.get('status_2') == 5:
