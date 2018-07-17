@@ -45,11 +45,11 @@ def callback_inline(call):
 		elif call.data == "btn2":
 			button_4 = types.InlineKeyboardButton(text="Домой", callback_data="btn4")
 			keyboard.add(button_4)
-			bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Пожалуйста, введите номер Вашего заказа")
+			bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Пожалуйста, введите номер Вашего заказа", reply_markup=keyboard)
 		elif call.data == "btn3":
 			button_4 = types.InlineKeyboardButton(text="Домой", callback_data="btn4")
 			keyboard.add(button_4)
-			bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Пожалуйста, введите номер Вашего заказа")
+			bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Пожалуйста, введите номер Вашего заказа", reply_markup=keyboard)
 		elif call.data == "btn4":
 			bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
 			send_welcome(call.message)
