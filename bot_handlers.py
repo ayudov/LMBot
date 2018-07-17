@@ -62,9 +62,9 @@ def answer_message(message):
 						send_array.append("Статус: " + str(x.get('status')) + "\nПровайдер: " + str(x.get('provider')) + "\n")
 						hat_written = True
 					if x.get('status_2') == 1:
-						send_array.append("\nВнешний ключ " + ": " + str(x.get('external_id')) + "\nСтатус Новой Почты " + ": " + "Нова пошта очікує надходження від відправника\n")
+						send_array.append("\nВнешний ключ " + ": " + str(x.get('external_id')) + "\nСтатус Новой Почты" + ": " + "Нова пошта очікує надходження від відправника\n")
 					elif x.get('status_2') == 2:
-						send_array.append("\nВнешний ключ " + ": " + str(x.get('external_id')) + "\nСтатус Новой Почты " + ": " + "Видалено\n")
+						send_array.append("\nВнешний ключ " + ": " + str(x.get('external_id')) + "\nСтатус Новой Почты" + ": " + "Видалено\n")
 
 
 					'''if x.get('status_2') == 1:
@@ -126,7 +126,7 @@ def send_message(id, text, array):
 	text = text + result[0]
 
 	turn = 0
-	for x+1 in result:
+	for x=1 in result:
 		turn = turn + 1	
 		text = text + str(turn) + ")" + str(x)
 		
