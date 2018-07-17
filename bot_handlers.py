@@ -48,12 +48,12 @@ def answer_message(message):
 			if x.get('pyxis_order_uid') == int(message.text):
 				send = True
 				if x.get('provider') == 'LEROY_MERLIN':
-					send_text = "\nСтатус: " + str(x.get('status')) + "\nПровайдер: " + str(x.get('provider'))  + "\nВнешний ключ: " + str(x.get('external_id')) + "\nПолучите доставку в одном из магазинов\n"
+					send_array.append("\nСтатус: " + str(x.get('status')) + "\nПровайдер: " + str(x.get('provider'))  + "\nВнешний ключ: " + str(x.get('external_id')) + "\nПолучите доставку в одном из магазинов\n")
 				
 
 
 				elif x.get('provider') == 'AVITEK_INVEST':
-					send_text = send_text + "\nСтатус: " + str(x.get('status')) + "\nПровайдер: " + str(x.get('provider'))  + "\nВнешний ключ: " + str(x.get('external_id')) + "\nОжидайте доставку домой\n"
+					send_array.append("\nСтатус: " + str(x.get('status')) + "\nПровайдер: " + str(x.get('provider'))  + "\nВнешний ключ: " + str(x.get('external_id')) + "\nОжидайте доставку домой\n")
 
 
 
