@@ -41,7 +41,7 @@ def callback_inline(call):
 		if call.data == "btn1":
 			button_4 = types.InlineKeyboardButton(text="Домой", callback_data="btn4")
 			keyboard.add(button_4)
-			bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Вы подписаны на рассылку", reply_markup=keyboard)
+			bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Вы подписаны на рассылку\n<i>Тут будет подписка чкловека</i>", reply_markup=keyboard)
 		elif call.data == "btn2":
 			button_4 = types.InlineKeyboardButton(text="Домой", callback_data="btn4")
 			keyboard.add(button_4)
