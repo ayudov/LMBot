@@ -123,9 +123,10 @@ def send_message(id, text, array):
     		if item not in seen:
      			seen.append(item)
      			result.append(item)
+
 	text = text + result[0]
 
-	for (var x = 1; x < result.length; x++){
+	for (x = 1; x < result.length; x++){
 		text = text + str(x) + ")" + str(result[x])
 	}
 		
