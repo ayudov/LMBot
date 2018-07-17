@@ -115,7 +115,8 @@ def answer_message(message):
 
 
 
-def send_message(id, text, array): 
+def send_message(id, text, array): 	
+	text = ""
 	seen = []
 	result = []
 	for item in array:
