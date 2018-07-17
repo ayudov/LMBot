@@ -125,10 +125,9 @@ def send_message(id, text, array):
      			result.append(item)
 	text = text + result[0]
 
-	turn = 0
-	for x=1 in result:
-		turn = turn + 1	
-		text = text + str(turn) + ")" + str(x)
+	for (var x = 1; x < result.length; x++){
+		text = text + str(x) + ")" + str(result[x])
+	}
 		
 	bot.send_message(id, text)
 
