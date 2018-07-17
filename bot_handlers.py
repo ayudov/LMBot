@@ -2,7 +2,6 @@
 from telebot import types
 import gspread
 import config
-
 import re
 
 
@@ -100,7 +99,7 @@ def answer_message(message):
 						send_array.append("\nВнешний ключ: " + str(x.get('external_id')) + "\nСтатус Новой Почты: " + "-\n")
 					
 		if send == False:
-			send_text = "К сожалению, такого кода товара нет"
+			send_array.append("К сожалению, такого кода товара нет")
 
 
 
