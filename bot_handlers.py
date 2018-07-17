@@ -123,11 +123,12 @@ def send_message(id, text, array):
     		if item not in seen:
      			seen.append(item)
      			result.append(item)
+	text = text + result[0]
 
 	turn = 0
-	for x in result:
+	for x+1 in result:
 		turn = turn + 1	
-		text = text + str(turn) + ")\n" + str(x)
+		text = text + str(turn) + ")" + str(x)
 		
 	bot.send_message(id, text)
 
