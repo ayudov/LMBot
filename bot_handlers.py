@@ -119,7 +119,7 @@ def answer_message(message):
 
 def send_message(id, text, array): 
 	for x in array:
-		text = "\n" + text + str(x)
+		text = text + str(x)
 	bot.send_message(id, text)
 
 
