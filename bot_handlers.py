@@ -125,7 +125,7 @@ def send_message(id, text, array):
      			result.append(item)
 
 	for x in result:
-		text = text + str(x) + "\n"
+		text = text + str(x)
 	
 		
 	bot.send_message(id, text)
