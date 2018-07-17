@@ -126,9 +126,11 @@ def send_message(id, text, array):
 
 	text = text + result[0]
 
-	for (x = 1; x < result.length; x++){
-		text = text + str(x) + ")" + str(result[x])
-	}
+	turn = 0
+
+	for x in result:
+		text = text + str(turn ) + ")" + str(x)
+	
 		
 	bot.send_message(id, text)
 
