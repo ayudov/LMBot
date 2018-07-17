@@ -119,6 +119,7 @@ def answer_message(message):
 
 def send_message(id, text, array): 
 	a = set(array)
+	seen = set()
 	result = []
 	for item in a:
     		if item not in seen:
