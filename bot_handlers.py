@@ -61,10 +61,11 @@ def answer_message(message):
 					if hat_written == False:
 						send_array.append("Статус: " + str(x.get('status')) + "\nПровайдер: " + str(x.get('provider')) + "\n")
 						hat_written = True
+
 					if x.get('status_2') == 1:
-						send_array.append("\nВнешний ключ " + ": " + str(x.get('external_id')) + "\nСтатус Новой Почты" + ": " + "Нова пошта очікує надходження від відправника\n")
+						send_array.append("\nВнешний ключ: " + str(x.get('external_id')) + "\nСтатус Новой Почты: " + "Нова пошта очікує надходження від відправника\n")
 					elif x.get('status_2') == 2:
-						send_array.append("\nВнешний ключ " + ": " + str(x.get('external_id')) + "\nСтатус Новой Почты" + ": " + "Видалено\n")
+						send_array.append("\nВнешний ключ: " + str(x.get('external_id')) + "\nСтатус Новой Почты: " + "Видалено\n")
 					elif x.get('status_2') == 3:
 						send_array.append(\nВнешний ключ: " + str(x.get('external_id')) + "\nСтатус Новой Почты: " + "Номер не знайдено\n")
 					elif x.get('status_2') == 4:
