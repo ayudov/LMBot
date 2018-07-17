@@ -52,7 +52,7 @@ def callback_inline(call):
 			bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Пожалуйста, введите номер Вашего заказа")
 		elif call.data == "btn4":
 			bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
-			any_msg(call.message)
+			send_welcome(call.message)
 
 '''@bot.message_handler(content_types=["text"]) # Любой текст
 def answer_message(message):
