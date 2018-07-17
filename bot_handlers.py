@@ -26,11 +26,35 @@ print(bot.get_me())
 #----------
 @bot.message_handler(commands=['start'])  # Выполняется, когда пользователь нажимает на start
 def send_welcome(message):
+	keyboard = types.InlineKeyboardMarkup()
+	button_1 = types.InlineKeyboardButton(text="Подписаться на рассылку", callback_data="btn1")
+	button_2 = types.InlineKeyboardButton(text="Статус заказа", callback_data="btn2")
+	button_3 = types.InlineKeyboardButton(text="Состав заказа", callback_data="btn3")
 
-	bot.send_message(message.chat.id, 'Вас приветствует бот Leroy Merlin\nПожалуйста, введите номер заказа')
+	keyboard.add(button_1, button_3, button_2)
+	bot.send_message(message.chat.id, "Вас приветствует бот Leroy Merlin\nПожалуйста, введите номер заказа", reply_markup=keyboard)
 
+@bot.callback_query_handler(func=lambda call: True)
+def callback_inline(call):
+	keyboard = types.InlineKeyboardMarkup()
+	if call.message:
+		if call.data == "btn1":
+			button_4 = types.InlineKeyboardButton(text="Домой", callback_data="btn4")
+			keyboard.add(button_4)
+			bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Вы подписаны на рассылку", reply_markup=keyboard)
+		elif call.data == "btn2":
+			button_4 = types.InlineKeyboardButton(text="Домой", callback_data="btn4")
+			keyboard.add(button_4)
+			bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Пожалуйста, введите номер Вашего заказа")
+		elif call.data == "btn3":
+			button_4 = types.InlineKeyboardButton(text="Домой", callback_data="btn4")
+			keyboard.add(button_4)
+			bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Пожалуйста, введите номер Вашего заказа")
+		elif call.data == "btn4":
+			bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
+			any_msg(call.message)
 
-@bot.message_handler(content_types=["text"]) # Любой текст
+'''@bot.message_handler(content_types=["text"]) # Любой текст
 def answer_message(message):
 
 	result = sheet.get_all_records()
@@ -39,6 +63,9 @@ def answer_message(message):
 	send_array = []
 	send_text = ""
 	
+	
+	if 
+
 	#if re.search('[a-zA-ZА-Яа-я]', message.text):
 	if re.search('\D', message.text):
 		bot.send_message(message.chat.id, "Пожалуйста, номер заказа, который состоит только из цифр")
@@ -105,7 +132,7 @@ def answer_message(message):
 
 	send_message(message.chat.id, send_text, send_array)
 
-			
+			'''
 
 
 
