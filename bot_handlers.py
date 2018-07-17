@@ -116,11 +116,11 @@ def answer_message(message):
 
 
 def send_message(id, text, array): 
-	seen = set()
+	seen = []
 	result = []
 	for item in array:
     		if item not in seen:
-     			seen.add(item)
+     			seen.append(item)
      			result.append(item)
 
 	turn = 0
