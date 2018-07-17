@@ -118,7 +118,14 @@ def answer_message(message):
 
 
 def send_message(id, text, array): 
-	for x in array:
+	a = set(array)
+	result = []
+	for item in a:
+    		if item not in seen:
+     	   	seen.add(item)
+     		result.append(item)
+	
+	for x in result:		
 		text = text + str(x)
 	bot.send_message(id, text)
 
