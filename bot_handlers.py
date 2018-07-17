@@ -39,7 +39,6 @@ def answer_message(message):
 	hat_written = False
 	send_array = []
 	send_text = ""
-	turn = 0
 	
 	#if re.search('[a-zA-ZА-Яа-я]', message.text):
 	if re.search('\D', message.text):
@@ -58,15 +57,14 @@ def answer_message(message):
 
 
 
-				elif x.get('provider') == 'NOVA_POSHTA':
-					turn = turn + 1
+				elif x.get('provider') == 'NOVA_POSHTA':			
 					if hat_written == False:
 						send_array.append("Статус: " + str(x.get('status')) + "\nПровайдер: " + str(x.get('provider')) + "\n")
 						hat_written = True
 					if x.get('status_2') == 1:
-						send_array.append("\nВнешний ключ " + str(turn) + ": " + str(x.get('external_id')) + "\nСтатус Новой Почты " + str(turn) + ": " + "Нова пошта очікує надходження від відправника\n")
+						send_array.append("\nВнешний ключ " + ": " + str(x.get('external_id')) + "\nСтатус Новой Почты " + str(turn) + ": " + "Нова пошта очікує надходження від відправника\n")
 					elif x.get('status_2') == 2:
-						send_array.append("\nВнешний ключ " + str(turn) + ": " + str(x.get('external_id')) + "\nСтатус Новой Почты " + str(turn) + ": " + "Видалено\n")
+						send_array.append("\nВнешний ключ " + ": " + str(x.get('external_id')) + "\nСтатус Новой Почты " + str(turn) + ": " + "Видалено\n")
 
 
 					'''if x.get('status_2') == 1:
@@ -124,9 +122,13 @@ def send_message(id, text, array):
     		if item not in seen:
      			seen.add(item)
      			result.append(item)
+
+	turn = 0
 	
-	for x in result:		
-		text = text + str(x)
+	for x in result:
+		turn = turn + 1	
+		text = str(turn) + ")\n" + text + str(x)
+		
 	bot.send_message(id, text)
 
 
