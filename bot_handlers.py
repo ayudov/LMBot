@@ -45,7 +45,7 @@ def callback_inline(call):
 		elif call.data == "btn2":
 			button_4 = types.InlineKeyboardButton(text="Домой", callback_data="btn4")
 			keyboard.add(button_4)
-			bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Пожалуйста, введите номер Вашего заказа", reply_markup=keyboard)
+			bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Пожалуйста, введите номер Вашего заказа/nstatus - ", reply_markup=keyboard)
 		elif call.data == "btn3":
 			button_4 = types.InlineKeyboardButton(text="Домой", callback_data="btn4")
 			keyboard.add(button_4)
@@ -72,8 +72,10 @@ def answer_message(message):
 	send_text = ""
 	
 	#if re.search('[a-zA-ZА-Яа-я]', message.text):
-	if re.search('\D', message.text):
-		bot.send_message(message.chat.id, "Пожалуйста, номер заказа, который состоит только из цифр")
+	'''if re.search('\D', message.text):
+		bot.send_message(message.chat.id, "Пожалуйста, номер заказа, который состоит только из цифр")'''
+	if "status - " not in message.text:
+		bot.send_message(message.chat.id, "Пожалуйста, введите номер заказа, как уквзано в примере")
 	else:
 		for x  in result:
 			if x.get('pyxis_order_uid') == int(message.text):
