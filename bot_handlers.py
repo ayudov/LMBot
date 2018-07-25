@@ -62,7 +62,7 @@ def callback_inline(call):
 			'''bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
 			send_welcome(call.message)'''
 
-@bot.message_handler(content_types=["text"]) # Любой текст
+@bot.message_handler(content_types=["text"]) #Любой текст
 def answer_message(message):
 
 	result = sheet.get_all_records()
@@ -73,77 +73,73 @@ def answer_message(message):
 	
 	input_text_array = message.text.split()
 	
-	#if re.search('[a-zA-ZА-Яа-я]', message.text):
-	'''if re.search('\D', message.text):
-		bot.send_message(message.chat.id, "Пожалуйста, номер заказа, который состоит только из цифр")'''
-	if "status - " not in message.text:
-		bot.send_message(message.chat.id, "Пожалуйста, введите номер заказа, как уквзано в примере")
-	else:
-		for x  in result:
-			if x.get('pyxis_order_uid') == int(input_text_array[2]):
-				send = True
-				if x.get('provider') == 'LEROY_MERLIN':
-					send_array.append("\nСтатус: " + str(x.get('status')) + "\nПровайдер: " + str(x.get('provider'))  + "\nВнешний ключ: " + str(x.get('external_id')) + "\nПолучите доставку в одном из магазинов\n")
+	if "status - " in message.text:
+		if len(input_text_array) >=4:
+			send_array.append("Пожалуйста, введите запрос, как уквзано в примере")
+			#bot.send_message(message.chat.id, "Пожалуйста, введите номер заказа, как уквзано в примере")
+		elif re.search('\D', input_text_array[2]):
+			send_array.append("Пожалуйста, номер заказа, который состоит только из цифр")
+			#bot.send_message(message.chat.id, "Пожалуйста, номер заказа, который состоит только из цифр")
+		else:
+			for x  in result:
+				if x.get('pyxis_order_uid') == int(input_text_array[2]):
+					send = True
+					if x.get('provider') == 'LEROY_MERLIN':
+						send_array.append("\nСтатус: " + str(x.get('status')) + "\nПровайдер: " + str(x.get('provider'))  + "\nВнешний ключ: " + str(x.get('external_id')) + "\nПолучите доставку в одном из магазинов\n")
 				
+					elif x.get('provider') == 'AVITEK_INVEST':
+						send_array.append("\nСтатус: " + str(x.get('status')) + "\nПровайдер: " + str(x.get('provider'))  + "\nВнешний ключ: " + str(x.get('external_id')) + "\nОжидайте доставку домой\n")
 
+					elif x.get('provider') == 'NOVA_POSHTA':			
+						if hat_written == False:
+							send_array.append("Статус: " + str(x.get('status')) + "\nПровайдер: " + str(x.get('provider')) + "\n")
+							hat_written = True
+						if x.get('status_2') == 1:
+							send_array.append("\nВнешний ключ: " + str(x.get('external_id')) + "\nСтатус Новой Почты: " + "Нова пошта очікує надходження від відправника\n")
+						elif x.get('status_2') == 2:
+							send_array.append("\nВнешний ключ: " + str(x.get('external_id')) + "\nСтатус Новой Почты: " + "Видалено\n")
+						elif x.get('status_2') == 3:
+							send_array.append("\nВнешний ключ: " + str(x.get('external_id')) + "\nСтатус Новой Почты: " + "Номер не знайдено\n")
+						elif x.get('status_2') == 4:
+							send_array.append("\nВнешний ключ: " + str(x.get('external_id')) + "\nСтатус Новой Почты: " + "Відправлення у місті ХХXХ. (Статус для межобластных отправлений)\n")
+						elif x.get('status_2') == 5:
+							send_array.append("\nВнешний ключ: " + str(x.get('external_id')) + "\nСтатус Новой Почты: " + "Відправлення прямує до міста YYYY\n")
+						elif x.get('status_2') == 6:
+							send_array.append("\nВнешний ключ: " + str(x.get('external_id')) + "\nСтатус Новой Почты: " + "Відправлення у місті YYYY, орієнтовна доставка до ВІДДІЛЕННЯ-XXX dd-mm. Очікуйте додаткове повідомлення про прибуття\n")
+						elif x.get('status_2') == 7 or x.get('status_2') == 8:
+							send_array.append("\nВнешний ключ: " + str(x.get('external_id')) + "\nСтатус Новой Почты: " + "Прибув на відділення\n")
+						elif x.get('status_2') == 9:
+							send_array.append("\nВнешний ключ: " + str(x.get('external_id')) + "\nСтатус Новой Почты: " + "Відправлення отримано\n")
+						elif x.get('status_2') == 10:
+							send_array.append("\nВнешний ключ: " + str(x.get('external_id')) + "\nСтатус Новой Почты: " + "Відправлення отримано %DateReceived%. Протягом доби ви одержите SMS-повідомлення про надходження грошового переказу та зможете отримати його в касі відділення «Нова пошта»\n")
+						elif x.get('status_2') == 11:
+							send_array.append("\nВнешний ключ: " + str(x.get('external_id')) + "\nСтатус Новой Почты: " + "Відправлення отримано %DateReceived%. Грошовий переказ видано одержувачу\n")
+						elif x.get('status_2') == 14:
+							send_array.append("\nВнешний ключ: " + str(x.get('external_id')) + "\nСтатус Новой Почты: " + "Відправлення передано до огляду отримувачу\n")
+						elif x.get('status_2') == 101:
+							send_array.append("\nВнешний ключ: " + str(x.get('external_id')) + "\nСтатус Новой Почты: " + "На шляху до одержувача\n")
+						elif x.get('status_2') == 102 or x.get('status_2') == 103 or x.get('status_2') == 108:
+							send_array.append("\nВнешний ключ: " + str(x.get('external_id')) + "\nСтатус Новой Почты: " + "Відмова одержувача\n")
+						elif x.get('status_2') == 104:
+							send_array.append("\nВнешний ключ: " + str(x.get('external_id')) + "\nСтатус Новой Почты: " + "Змінено адресу\n")
+						elif x.get('status_2') == 105:
+							send_array.append("\nВнешний ключ: " + str(x.get('external_id')) + "\nСтатус Новой Почты: " + "Припинено зберігання\n")
+						elif x.get('status_2') == 106:
+							send_array.append("\nВнешний ключ: " + str(x.get('external_id')) + "\nСтатус Новой Почты: " + "Одержано і є ТТН грошовий переказ\n")
+						elif x.get('status_2') == 107:
+							send_array.append("\nВнешний ключ: " + str(x.get('external_id')) + "\nСтатус Новой Почты: " + "Нараховується плата за зберігання\n")
+						else:
+							send_array.append("\nВнешний ключ: " + str(x.get('external_id')) + "\nСтатус Новой Почты: " + "-\n")
+						
+			if send == False:
+				send_array.append("К сожалению, такого кода товара нет")
 
-				elif x.get('provider') == 'AVITEK_INVEST':
-					send_array.append("\nСтатус: " + str(x.get('status')) + "\nПровайдер: " + str(x.get('provider'))  + "\nВнешний ключ: " + str(x.get('external_id')) + "\nОжидайте доставку домой\n")
-
-
-
-				elif x.get('provider') == 'NOVA_POSHTA':			
-					if hat_written == False:
-						send_array.append("Статус: " + str(x.get('status')) + "\nПровайдер: " + str(x.get('provider')) + "\n")
-						hat_written = True
-
-					if x.get('status_2') == 1:
-						send_array.append("\nВнешний ключ: " + str(x.get('external_id')) + "\nСтатус Новой Почты: " + "Нова пошта очікує надходження від відправника\n")
-					elif x.get('status_2') == 2:
-						send_array.append("\nВнешний ключ: " + str(x.get('external_id')) + "\nСтатус Новой Почты: " + "Видалено\n")
-					elif x.get('status_2') == 3:
-						send_array.append("\nВнешний ключ: " + str(x.get('external_id')) + "\nСтатус Новой Почты: " + "Номер не знайдено\n")
-					elif x.get('status_2') == 4:
-						send_array.append("\nВнешний ключ: " + str(x.get('external_id')) + "\nСтатус Новой Почты: " + "Відправлення у місті ХХXХ. (Статус для межобластных отправлений)\n")
-					elif x.get('status_2') == 5:
-						send_array.append("\nВнешний ключ: " + str(x.get('external_id')) + "\nСтатус Новой Почты: " + "Відправлення прямує до міста YYYY\n")
-					elif x.get('status_2') == 6:
-						send_array.append("\nВнешний ключ: " + str(x.get('external_id')) + "\nСтатус Новой Почты: " + "Відправлення у місті YYYY, орієнтовна доставка до ВІДДІЛЕННЯ-XXX dd-mm. Очікуйте додаткове повідомлення про прибуття\n")
-					elif x.get('status_2') == 7 or x.get('status_2') == 8:
-						send_array.append("\nВнешний ключ: " + str(x.get('external_id')) + "\nСтатус Новой Почты: " + "Прибув на відділення\n")
-					elif x.get('status_2') == 9:
-						send_array.append("\nВнешний ключ: " + str(x.get('external_id')) + "\nСтатус Новой Почты: " + "Відправлення отримано\n")
-					elif x.get('status_2') == 10:
-						send_array.append("\nВнешний ключ: " + str(x.get('external_id')) + "\nСтатус Новой Почты: " + "Відправлення отримано %DateReceived%. Протягом доби ви одержите SMS-повідомлення про надходження грошового переказу та зможете отримати його в касі відділення «Нова пошта»\n")
-					elif x.get('status_2') == 11:
-						send_array.append("\nВнешний ключ: " + str(x.get('external_id')) + "\nСтатус Новой Почты: " + "Відправлення отримано %DateReceived%. Грошовий переказ видано одержувачу\n")
-					elif x.get('status_2') == 14:
-						send_array.append("\nВнешний ключ: " + str(x.get('external_id')) + "\nСтатус Новой Почты: " + "Відправлення передано до огляду отримувачу\n")
-					elif x.get('status_2') == 101:
-						send_array.append("\nВнешний ключ: " + str(x.get('external_id')) + "\nСтатус Новой Почты: " + "На шляху до одержувача\n")
-					elif x.get('status_2') == 102 or x.get('status_2') == 103 or x.get('status_2') == 108:
-						send_array.append("\nВнешний ключ: " + str(x.get('external_id')) + "\nСтатус Новой Почты: " + "Відмова одержувача\n")
-					elif x.get('status_2') == 104:
-						send_array.append("\nВнешний ключ: " + str(x.get('external_id')) + "\nСтатус Новой Почты: " + "Змінено адресу\n")
-					elif x.get('status_2') == 105:
-						send_array.append("\nВнешний ключ: " + str(x.get('external_id')) + "\nСтатус Новой Почты: " + "Припинено зберігання\n")
-					elif x.get('status_2') == 106:
-						send_array.append("\nВнешний ключ: " + str(x.get('external_id')) + "\nСтатус Новой Почты: " + "Одержано і є ТТН грошовий переказ\n")
-					elif x.get('status_2') == 107:
-						send_array.append("\nВнешний ключ: " + str(x.get('external_id')) + "\nСтатус Новой Почты: " + "Нараховується плата за зберігання\n")
-					else:
-						send_array.append("\nВнешний ключ: " + str(x.get('external_id')) + "\nСтатус Новой Почты: " + "-\n")
-					
-		if send == False:
-			send_array.append("К сожалению, такого кода товара нет")
-
-
-
-	send_message(message.chat.id, send_text, send_array)
+	else:
+		 send_array.append("Пожалуйста, введите номер заказа, как указано в примере")
+			
+	send_message(message.chat.id, send_text, send_array) #Отправляем сообщение
 
 			
-
-
 
 def send_message(id, text, array): 	
 	text = ""
