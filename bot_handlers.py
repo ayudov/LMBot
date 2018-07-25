@@ -71,6 +71,8 @@ def answer_message(message):
 	send_array = []
 	send_text = ""
 	
+	input_text_array = message.text.split()
+	
 	#if re.search('[a-zA-ZА-Яа-я]', message.text):
 	'''if re.search('\D', message.text):
 		bot.send_message(message.chat.id, "Пожалуйста, номер заказа, который состоит только из цифр")'''
@@ -78,7 +80,7 @@ def answer_message(message):
 		bot.send_message(message.chat.id, "Пожалуйста, введите номер заказа, как уквзано в примере")
 	else:
 		for x  in result:
-			if x.get('pyxis_order_uid') == int(message.text):
+			if x.get('pyxis_order_uid') == int(input_text_array[3]):
 				send = True
 				if x.get('provider') == 'LEROY_MERLIN':
 					send_array.append("\nСтатус: " + str(x.get('status')) + "\nПровайдер: " + str(x.get('provider'))  + "\nВнешний ключ: " + str(x.get('external_id')) + "\nПолучите доставку в одном из магазинов\n")
