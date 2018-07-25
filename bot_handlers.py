@@ -62,7 +62,7 @@ def callback_inline(call):
 			'''bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
 			send_welcome(call.message)'''
 
-'''@bot.message_handler(content_types=["text"]) # Любой текст
+@bot.message_handler(content_types=["text"]) # Любой текст
 def answer_message(message):
 
 	result = sheet.get_all_records()
@@ -140,7 +140,7 @@ def answer_message(message):
 
 	send_message(message.chat.id, send_text, send_array)
 
-			'''
+			
 
 
 
