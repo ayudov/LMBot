@@ -51,8 +51,16 @@ def callback_inline(call):
 			keyboard.add(button_4)
 			bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Пожалуйста, введите номер Вашего заказа", reply_markup=keyboard)
 		elif call.data == "btn4":
-			bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
-			send_welcome(call.message)
+			keyboard = types.InlineKeyboardMarkup()
+			button_1 = types.InlineKeyboardButton(text="Подписаться на рассылку", callback_data="btn1")
+			button_2 = types.InlineKeyboardButton(text="Статус заказа", callback_data="btn2")
+			button_3 = types.InlineKeyboardButton(text="Состав заказа", callback_data="btn3")
+
+			keyboard.add(button_1, button_3, button_2)
+			bot.send_message(message.chat.id, "Вас приветствует бот Leroy Merlin\nПожалуйста, введите номер заказа", reply_markup=keyboard)
+			bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Вас приветствует бот Leroy Merlin\nПожалуйста, введите номер заказа", reply_markup=keyboard)
+			'''bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
+			send_welcome(call.message)'''
 
 '''@bot.message_handler(content_types=["text"]) # Любой текст
 def answer_message(message):
