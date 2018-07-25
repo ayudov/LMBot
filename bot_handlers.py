@@ -71,9 +71,6 @@ def answer_message(message):
 	send_array = []
 	send_text = ""
 	
-	
-	if 
-
 	#if re.search('[a-zA-ZА-Яа-я]', message.text):
 	if re.search('\D', message.text):
 		bot.send_message(message.chat.id, "Пожалуйста, номер заказа, который состоит только из цифр")
