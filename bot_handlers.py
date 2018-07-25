@@ -32,7 +32,7 @@ def send_welcome(message):
 	button_3 = types.InlineKeyboardButton(text="Состав заказа", callback_data="btn3")
 
 	keyboard.add(button_1, button_3, button_2)
-	bot.send_message(message.chat.id, "Вас приветствует бот Leroy Merlin\nПожалуйста, введите номер заказа", reply_markup=keyboard)
+	bot.send_message(message.chat.id, "<b>Вас приветствует бот Leroy Merlin</b>\nПожалуйста, введите номер заказа", reply_markup=keyboard)
 
 @bot.callback_query_handler(func=lambda call: True)
 def callback_inline(call):
@@ -45,7 +45,7 @@ def callback_inline(call):
 		elif call.data == "btn2":
 			button_4 = types.InlineKeyboardButton(text="Домой", callback_data="btn4")
 			keyboard.add(button_4)
-			bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Пожалуйста, введите номер Вашего заказа/nstatus - ", reply_markup=keyboard)
+			bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Пожалуйста, введите номер Вашего заказа\nstatus - ", reply_markup=keyboard)
 		elif call.data == "btn3":
 			button_4 = types.InlineKeyboardButton(text="Домой", callback_data="btn4")
 			keyboard.add(button_4)
@@ -88,7 +88,7 @@ def answer_message(message):
 						send_array.append("\nСтатус: " + str(x.get('status')) + "\nПровайдер: " + str(x.get('provider'))  + "\nВнешний ключ: " + str(x.get('external_id')) + "\nПолучите доставку в одном из магазинов\n")
 				
 					elif x.get('provider') == 'AVITEK_INVEST':
-						send_array.append("\nСтатус: " + str(x.get('status')) + "\nПровайдер: " + str(x.get('provider'))  + "\nВнешний ключ: " + str(x.get('external_id')) + "\nОжидайте доставку домой\n")
+						send_array.append("\nСтатус: " + str(x.get('status')) + "\nПровайдер: " + str(x.get('provider'))  + "\nВнешний ключ: " + str(x.get('external_id')) + "\nОжидайте доставку на дом\n")
 
 					elif x.get('provider') == 'NOVA_POSHTA':			
 						if hat_written == False:
