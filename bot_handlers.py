@@ -32,7 +32,7 @@ def send_welcome(message):
 	button_3 = types.InlineKeyboardButton(text="Состав заказа", callback_data="btn3")
 
 	keyboard.add(button_1, button_3, button_2)
-	bot.send_message(message.chat.id, "Вас приветствует бот Leroy Merlin\nПожалуйста, введите номер заказа", reply_markup=keyboard)
+	bot.send_message(message.chat.id, "Вас приветствует бот Leroy Merlin\nПожалуйста, выберите один из следующих пунктов меню", reply_markup=keyboard)
 
 @bot.callback_query_handler(func=lambda call: True)
 def callback_inline(call):
@@ -41,11 +41,11 @@ def callback_inline(call):
 		if call.data == "btn1":
 			button_4 = types.InlineKeyboardButton(text="Домой", callback_data="btn4")
 			keyboard.add(button_4)
-			bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text='Вы подписаны на рассылку\nТут будет подписка человека', reply_markup=keyboard)
+			bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text='Вы подписаны на рассылку\n(Тут будет подписка человека)', reply_markup=keyboard)
 		elif call.data == "btn2":
 			button_4 = types.InlineKeyboardButton(text="Домой", callback_data="btn4")
 			keyboard.add(button_4)
-			bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Пожалуйста, введите номер Вашего заказа\nstatus - ", reply_markup=keyboard)
+			bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Пожалуйста, введите номер Вашего заказа. Пожалуйста, используйте этот формат:\nstatus - ", reply_markup=keyboard)
 		elif call.data == "btn3":
 			button_4 = types.InlineKeyboardButton(text="Домой", callback_data="btn4")
 			keyboard.add(button_4)
@@ -74,8 +74,9 @@ def answer_message(message):
 	input_text_array = message.text.split()
 	
 	if "status - " in message.text:
-		if len(input_text_array) >=4:
-			send_array.append("Пожалуйста, введите запрос, как уквзано в примере")
+		#if len(input_text_array) >=4 or len(input_text_array) <3:
+		if len(input_text_array) != 3:
+			send_array.append("Пожалуйста, используйте верный формат запроса")
 			#bot.send_message(message.chat.id, "Пожалуйста, введите номер заказа, как уквзано в примере")
 		elif re.search('\D', input_text_array[2]):
 			send_array.append("Пожалуйста, номер заказа, который состоит только из цифр")
@@ -135,7 +136,7 @@ def answer_message(message):
 				send_array.append("К сожалению, такого кода товара нет")
 
 	else:
-		 send_array.append("Пожалуйста, введите номер заказа, как указано в примере")
+		 send_array.append("Пожалуйста, используйте верный формат запроса")
 			
 	send_message(message.chat.id, send_text, send_array) #Отправляем сообщение
 
