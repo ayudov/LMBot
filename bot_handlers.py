@@ -32,7 +32,7 @@ def send_welcome(message):
 	button_3 = types.InlineKeyboardButton(text="Состав заказа", callback_data="btn3")
 
 	keyboard.add(button_1, button_2, button_3)
-	bot.send_message(message.chat.id, "Вас приветствует бот Leroy Merlin\nПожалуйста, выберите один из следующих пунктов меню", reply_markup=keyboard)
+	bot.send_message(message.chat.id, "<b>Вас приветствует бот Leroy Merlin</b>\nПожалуйста, выберите один из следующих пунктов меню", parse_mode='HTML', reply_markup=keyboard)
 
 @bot.callback_query_handler(func=lambda call: True)
 def callback_inline(call):
