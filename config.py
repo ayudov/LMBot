@@ -1,2 +1,8 @@
-TOKEN = '611203851:AAGKRhdLhseIK4Xhu-Ftyp_VUNXXclfudH0'
+from dotenv import load_dotenv
+import os
+load_dotenv()
+
+TOKEN = os.getenv('TOKEN')
+
+print('your TOKEN:' + TOKEN)
 APP_NAME = 'leroymerlintgbot'
